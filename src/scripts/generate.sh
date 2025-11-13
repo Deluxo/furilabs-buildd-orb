@@ -155,9 +155,7 @@ for arch in ${ARCHITECTURES}; do
         enabled_architectures="${enabled_architectures} ${arch}"
     fi
 
-    if [[ "${SOURCE_NAME}" == linux-android-* ]] && [ "${arch}" == "amd64" ]; then
-        resource_class="large"
-    elif [ "${arch}" == "amd64" ]; then
+    if [ "${arch}" == "amd64" ]; then
         resource_class="large"
     else
         resource_class="arm.large"
