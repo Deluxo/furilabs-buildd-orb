@@ -1,0 +1,23 @@
+description: >
+  Build a flatpak from a manifest using the flatpak-builder Docker image.
+parameters:
+  manifest:
+    type: string
+    description: Path to the flatpak manifest (relative to repo root)
+  arch:
+    type: string
+    default: amd64
+    description: Target architecture (amd64 or arm64)
+  suite:
+    type: string
+    default: forky
+    description: Suite name for the Docker image tag
+steps:
+  - run:
+      name: Flatpak build (<<parameters.arch>>)
+      no_output_timeout: 30m
+      environment:
+        PARAM_MANIFEST: <<parameters.manifest>>
+        PARAM_ARCH: <<parameters.arch>>
+        PARAM_SUITE: <<parameters.suite>>
+      command: <<include(scripts/flatpak-build.sh)>>
